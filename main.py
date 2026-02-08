@@ -50,9 +50,9 @@ class SandwichMachine:
             if self.machine_resources[x] < recipes[ingredients]["ingredients"][x]:
                 print("Sorry there is not enough " + x)
                 return False
-                # Remove this else statement later as its just for testing
-            else:
-                print("Sufficient "+x)
+            # Remove this else statement later as its just for testing
+            # else:
+            #     print("Sufficient "+x)
         return True
 
     def process_coins(self):
@@ -82,7 +82,6 @@ class SandwichMachine:
            Hint: no output"""
         for x in items:
             self.machine_resources[x] -= order_ingredients[sandwich_size]["ingredients"][x]
-            print(self.machine_resources[x])
 
 ### Make an instance of SandwichMachine class and write the rest of the codes ###
 p1 = SandwichMachine(resources)
@@ -100,7 +99,8 @@ while True:
     elif size == "off":
         quit()
     elif size == "report":
-        print(p1.machine_resources)
-        print(f"Size: {size}")
+        print(f"Bread: {p1.machine_resources["bread"]}")
+        print(f"Ham: {p1.machine_resources["ham"]}")
+        print(f"Cheese: {p1.machine_resources["cheese"]}")
     else:
         print("Invalid input")
