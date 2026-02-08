@@ -32,8 +32,10 @@ resources = {
     "cheese": 24,  ## ounces
 }
 ### Complete functions ###
-
+# Global list holding data for different ingredients to loop through
+items = ["bread", "ham", "cheese"]
 class SandwichMachine:
+
     # Initializes values inside of the sandwich machine class
     def __init__(self, machine_resources):
         """Receives resources as input.
@@ -42,8 +44,6 @@ class SandwichMachine:
 
     def check_resources(self, ingredients):
         """Returns True when order can be made, False if ingredients are insufficient."""
-        # Holding data for different ingredients to loop through
-        items = ["bread", "ham", "cheese"]
         # looping a conditional to pull from recipes and check if the resources are sufficient enough
         # for the specified recipe
         for x in items:
@@ -80,6 +80,9 @@ class SandwichMachine:
     def make_sandwich(self, sandwich_size, order_ingredients):
         """Deduct the required ingredients from the resources.
            Hint: no output"""
+        for x in items:
+            self.machine_resources[x] -= order_ingredients[sandwich_size]["ingredients"][x]
+            print(self.machine_resources[x])
 
 ### Make an instance of SandwichMachine class and write the rest of the codes ###
 p1 = SandwichMachine(resources)
@@ -88,10 +91,12 @@ while True:
     size = input()
     # Taking input for resource size and then inserting into search function
     if size in ("small", "medium", "large"):
+        # Checking if order can be made
         if p1.check_resources(size):
             coins = p1.process_coins()
-            p1.transaction_result(coins, recipes[size]["cost"])
-
+            if p1.transaction_result(coins, recipes[size]["cost"]):
+                p1.make_sandwich(size, recipes)
+                print(size + " sandwich is ready. Bon appetit!")
     elif size == "off":
         quit()
     elif size == "report":
