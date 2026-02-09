@@ -47,7 +47,7 @@ class SandwichMachine:
         # looping a conditional to pull from recipes and check if the resources are sufficient enough
         # for the specified recipe
         for x in items:
-            if self.machine_resources[x] < recipes[ingredients]["ingredients"][x]:
+            if self.machine_resources[x] < ingredients[x]:
                 print("Sorry there is not enough " + x)
                 return False
         return True
@@ -63,23 +63,23 @@ class SandwichMachine:
         nickels = ""
         print("Please insert coins.")
 
-        # Error check if the user doesnt input a number
+        # Error check if the user doesnt input a integer
         while dollars.isdigit() == False:
             dollars = input("How many dollars?: ")
             if dollars.isdigit() == False:
-                print("Error. Not an number.")
+                print("Error. Not an integer.")
         while half.isdigit() == False:
-            half = input("How many dollars?: ")
+            half = input("How many half dollars?: ")
             if half.isdigit() == False:
-                print("Error. Not an number.")
+                print("Error. Not an integer.")
         while quarters.isdigit() == False:
             quarters = input("How many quarters?: ")
             if quarters.isdigit() == False:
-                print("Error. Not an number.")
+                print("Error. Not an integer.")
         while nickels.isdigit() == False:
             nickels = input("How many nickels?: ")
             if nickels.isdigit() == False:
-                print("Error. Not an number.")
+                print("Error. Not an integer.")
         dollars = float(dollars)
         half = float(half)
         quarters = float(quarters)
@@ -106,7 +106,7 @@ class SandwichMachine:
         # Looping through the inventory and subtracting the ingredients used from
         # the specified recipe
         for x in items:
-            self.machine_resources[x] -= order_ingredients[sandwich_size]["ingredients"][x]
+            self.machine_resources[x] -= order_ingredients[x]
 
 ### Make an instance of SandwichMachine class and write the rest of the codes ###
 p1 = SandwichMachine(resources)
@@ -116,10 +116,10 @@ while True:
     # Taking input for resource size and then inserting into search function
     if size in ("small", "medium", "large"):
         # Checking if order can be made
-        if p1.check_resources(size):
+        if p1.check_resources(recipes[size]["ingredients"]):
             coins = p1.process_coins()
             if p1.transaction_result(coins, recipes[size]["cost"]):
-                p1.make_sandwich(size, recipes)
+                p1.make_sandwich(size, recipes[size]["ingredients"])
                 print(size + " sandwich is ready. Bon appetit!")
     elif size == "off":
         quit()
