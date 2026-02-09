@@ -123,9 +123,13 @@ while True:
                 print(size + " sandwich is ready. Bon appetit!")
     elif size == "off":
         quit()
-    #  Looping through the different items in inventory and printing
     elif size == "report":
-        for x in items:
-            print(f"{x}: {p1.machine_resources[x]}")
+    # Looping through the different items in inventory and printing
+        # for x in items:
+        #     print(f"{x}: {p1.machine_resources[x]}")
+    #  If the slices and pounds is necessary then here is the included code commented out
+        print("Bread: " + str(p1.machine_resources["bread"]) + " slice(s)")
+        print("Ham: " + str(p1.machine_resources["ham"]) + " slice(s)")
+        print("Cheese: " + str(p1.machine_resources["cheese"]) + " ounce(s)")
     else:
         print("Invalid input")
