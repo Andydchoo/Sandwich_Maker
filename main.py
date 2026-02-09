@@ -57,12 +57,34 @@ class SandwichMachine:
            Hint: include input() function here, e.g. input("how many quarters?: ")"""
         # Prompting user to insert their coin denominations one by one
         # then calculating their total and returning it
+        dollars = ""
+        half = ""
+        quarters = ""
+        nickels = ""
         print("Please insert coins.")
-        dollar = int(input("How many dollars?: "))
-        half = int(input("How many half dollars?: "))
-        quarters = int(input("How many quarters?: "))
-        nickels = int(input("How many nickels?: "))
-        total = dollar*1.0 + half*0.50 + quarters*0.25 + nickels*0.05
+
+        # Error check if the user doesnt input a number
+        while dollars.isdigit() == False:
+            dollars = input("How many dollars?: ")
+            if dollars.isdigit() == False:
+                print("Error. Not an number.")
+        while half.isdigit() == False:
+            half = input("How many dollars?: ")
+            if half.isdigit() == False:
+                print("Error. Not an number.")
+        while quarters.isdigit() == False:
+            quarters = input("How many quarters?: ")
+            if quarters.isdigit() == False:
+                print("Error. Not an number.")
+        while nickels.isdigit() == False:
+            nickels = input("How many nickels?: ")
+            if nickels.isdigit() == False:
+                print("Error. Not an number.")
+        dollars = float(dollars)
+        half = float(half)
+        quarters = float(quarters)
+        nickels = float(nickels)
+        total = dollars*1.0 + half*0.50 + quarters*0.25 + nickels*0.05
         return total
 
 
