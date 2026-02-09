@@ -55,19 +55,22 @@ class SandwichMachine:
     def process_coins(self):
         """Returns the total calculated from coins inserted.
            Hint: include input() function here, e.g. input("how many quarters?: ")"""
+        # Prompting user to insert their coin denominations one by one
+        # then calculating their total and returning it
         print("Please insert coins.")
         dollar = int(input("How many dollars?: "))
         half = int(input("How many half dollars?: "))
         quarters = int(input("How many quarters?: "))
         nickels = int(input("How many nickels?: "))
         total = dollar*1.0 + half*0.50 + quarters*0.25 + nickels*0.05
-        print(total)
         return total
 
 
     def transaction_result(self, coins, cost):
         """Return True when the payment is accepted, or False if money is insufficient.
            Hint: use the output of process_coins() function for cost input"""
+        # Conditional for if the user put in enough money then give their change back
+        # then return true. Otherwise tell them not enough and refund.
         if coins >= cost:
             print("Here is $" + str(round((coins - cost), 2)) + " in change.")
             return True
@@ -78,6 +81,8 @@ class SandwichMachine:
     def make_sandwich(self, sandwich_size, order_ingredients):
         """Deduct the required ingredients from the resources.
            Hint: no output"""
+        # Looping through the inventory and subtracting the ingredients used from
+        # the specified recipe
         for x in items:
             self.machine_resources[x] -= order_ingredients[sandwich_size]["ingredients"][x]
 
@@ -96,9 +101,9 @@ while True:
                 print(size + " sandwich is ready. Bon appetit!")
     elif size == "off":
         quit()
+    #  Looping through the different items in inventory and printing
     elif size == "report":
-        print(f"Bread: {p1.machine_resources["bread"]}")
-        print(f"Ham: {p1.machine_resources["ham"]}")
-        print(f"Cheese: {p1.machine_resources["cheese"]}")
+        for x in items:
+            print(f"{x}: {p1.machine_resources[x]}")
     else:
         print("Invalid input")
