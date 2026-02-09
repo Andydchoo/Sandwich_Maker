@@ -50,20 +50,18 @@ class SandwichMachine:
             if self.machine_resources[x] < recipes[ingredients]["ingredients"][x]:
                 print("Sorry there is not enough " + x)
                 return False
-            # Remove this else statement later as its just for testing
-            # else:
-            #     print("Sufficient "+x)
         return True
 
     def process_coins(self):
         """Returns the total calculated from coins inserted.
            Hint: include input() function here, e.g. input("how many quarters?: ")"""
         print("Please insert coins.")
-        dollar = float(input("How many dollars?: "))
-        half = float(input("How many half dollars?: "))
-        quarters = float(input("How many quarters?: "))
-        nickels = float(input("How many nickels?: "))
-        total = dollar*1.0 + half*0.5 + quarters*0.25 + nickels*0.05
+        dollar = int(input("How many dollars?: "))
+        half = int(input("How many half dollars?: "))
+        quarters = int(input("How many quarters?: "))
+        nickels = int(input("How many nickels?: "))
+        total = dollar*1.0 + half*0.50 + quarters*0.25 + nickels*0.05
+        print(total)
         return total
 
 
@@ -71,7 +69,7 @@ class SandwichMachine:
         """Return True when the payment is accepted, or False if money is insufficient.
            Hint: use the output of process_coins() function for cost input"""
         if coins >= cost:
-            print("Here is $" + str(coins - cost) + " in change.")
+            print("Here is $" + str(round((coins - cost), 2)) + " in change.")
             return True
         else:
             print("Sorry that's not enough money. Money refunded.")
